@@ -54,9 +54,11 @@ public class TitleLogoAndLoginValidation extends CommonMethods {
 		WebElement password=driver.findElement(By.id("txtPassword"));
 		sendText(password, ConfigsReader.getProperty("password"));
 		
-		click(driver.findElement(By.id("btnLogin")));
-		
-		
+		click(driver.findElement(By.id("btnLogin")));	
 	}
+  
+	
 
+	
+	
 }
