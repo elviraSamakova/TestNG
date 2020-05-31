@@ -9,16 +9,16 @@ import com.utils.CommonMethods;
 
 public class AssertionDemo extends CommonMethods {
 
-	@BeforeMethod
-	public void openBrowserAndNavigate() {
-		setUp();
-	}
-
-	@AfterMethod
-	public void quitBrowser() {
-		tearDown();
-	}
-	
+//	@BeforeMethod
+//	public void openBrowserAndNavigate() {
+//		setUp();
+//	}
+//
+//	@AfterMethod
+//	public void quitBrowser() {
+//		tearDown();
+//	}
+//	
 	@Test
 	public void titleValidation() {
 		String expectedTitle = "Human Management System";

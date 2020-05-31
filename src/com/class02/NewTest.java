@@ -3,7 +3,7 @@ package com.class02;
 import org.testng.annotations.Test;
 import org.testng.annotations.Test;
 
-import com.pages.AddEmployeePageElement;
+import com.pages.AddEmployeePageElements;
 import com.pages.LoginPageElements;
 import com.utils.CommonMethods;
 import com.utils.ConfigsReader;
@@ -45,7 +45,7 @@ public class NewTest extends CommonMethods {
 
 		click(login.loginBtn);
 
-		AddEmployeePageElement add = new AddEmployeePageElement();
+		AddEmployeePageElements add = new AddEmployeePageElements();
 		// WebElement pim =
 		// driver.findElement(By.xpath("//a[@id='menu_pim_viewPimModule']/b"));
 

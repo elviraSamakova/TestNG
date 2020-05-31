@@ -1,19 +1,23 @@
 package com.utils;
 
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchFrameException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.UnexpectedTagNameException;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CommonMethods extends BaseClass {
+public class CommonMethods extends PageInitializer {
 
 	/**
 	 * Method that clears and sends keys
@@ -26,25 +30,22 @@ public class CommonMethods extends BaseClass {
 		element.sendKeys(text);
 	}
 
-	  
 	/**
 	 * Method checks if logo is displayed or not
+	 * 
 	 * @param element
 	 */
-	
+
 	public static void isDisplayed(WebElement element) {
-	        Boolean isDisplayed = element.isDisplayed();
-	        String text = element.getText(); //this used for comparing , text represents label/attributes
-	        if(element.isDisplayed()) {//or i can do element.isDisplayed() 
-	            System.out.println(text+" is displayed: "+isDisplayed);//+isDisplayed);
-	        }else {
-	            System.out.println(text+" is not displayed: "+ isDisplayed);//+ isDisplayed);
-	        }
-	    }
-	
-	
-	
-	
+		Boolean isDisplayed = element.isDisplayed();
+		String text = element.getText(); // this used for comparing , text represents label/attributes
+		if (element.isDisplayed()) {// or i can do element.isDisplayed()
+			System.out.println(text + " is displayed: " + isDisplayed);// +isDisplayed);
+		} else {
+			System.out.println(text + " is not displayed: " + isDisplayed);// + isDisplayed);
+		}
+	}
+
 	/**
 	 * Method checks if radio/checkbox is enabled and clicks it
 	 * 
@@ -195,8 +196,7 @@ public class CommonMethods extends BaseClass {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	/**
 	 * Method switches focus to child window
 	 */
@@ -210,8 +210,6 @@ public class CommonMethods extends BaseClass {
 			}
 		}
 	}
-
-	
 
 	public static WebDriverWait getWaitObject() {
 		WebDriverWait wait = new WebDriverWait(driver, Constants.EXPLICIT_WAIT_TIME);
@@ -245,6 +243,21 @@ public class CommonMethods extends BaseClass {
 	}
 
 	/**
+	 * This method will take a screenshot
+	 */
+
+	public static void takeScreenshot(String filename) {
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File file = ts.getScreenshotAs(OutputType.FILE);
+
+		try {
+			FileUtils.copyFile(file, new File("screenshot/"+filename+".png"));
+		} catch (Exception ex) {
+			System.out.println("Cannot take screenshot");
+		}
+	}
+
+	/**
 	 * Method that will scroll the page down based on the passed pixel parameters
 	 * 
 	 * @param pixel
@@ -267,6 +280,18 @@ public class CommonMethods extends BaseClass {
 			Thread.sleep(second * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}
+
+	}
+
+	public static void selectCalendarDate(List<WebElement> element, String text) {
+		for (WebElement pickDate : element) {
+			if (pickDate.isEnabled()) {
+				if (pickDate.getText().equals(text)) {
+					pickDate.click();
+					break;
+				}
+			}
 		}
 
 	}

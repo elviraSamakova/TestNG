@@ -3,7 +3,7 @@ package com.class02;
 
 import org.testng.annotations.Test;
 
-import com.pages.DashBoardPageElements;
+import com.pages.DashboardPageElements;
 import com.pages.LoginPageElements;
 import com.utils.CommonMethods;
 import com.utils.ConfigsReader;
@@ -18,15 +18,15 @@ import org.testng.annotations.AfterMethod;
 
 public class HW extends CommonMethods {
 
-	@BeforeMethod
-	public void openBrowserAndNavigate() {
-		setUp();
-	}
-
-	@AfterMethod
-	public void quitBrowser() {
-		tearDown();
-	}
+//	@BeforeMethod
+//	public void openBrowserAndNavigate() {
+//		setUp();
+//	}
+//
+//	@AfterMethod
+//	public void quitBrowser() {
+//		tearDown();
+//	}
 
 	// 1st way
 	// @Test(dependsOnMethods = "invalidLogin" )
@@ -63,7 +63,7 @@ public class HW extends CommonMethods {
 		// 3rd way
 		click(login.loginBtn);
 
-		DashBoardPageElements dashboard = new DashBoardPageElements();
+		DashboardPageElements dashboard = new DashboardPageElements();
 
 		boolean displayed = dashboard.logo.isDisplayed();
 		if (displayed) {
@@ -93,7 +93,7 @@ public class HW extends CommonMethods {
 
 	@Test(priority = 3)
 	public void invalidLogin() throws Exception {
-		LoginPageElements login = new LoginPageElements();
+		//LoginPageElements login = new LoginPageElements();
 		sendText(login.username, ConfigsReader.getProperty("username"));
 		click(login.loginBtn);
 
